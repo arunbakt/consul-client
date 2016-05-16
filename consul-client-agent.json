@@ -1,0 +1,14 @@
+{
+  "data_dir": "/tmp/consul-client",
+  "ui_dir":"",
+  "log_level": "INFO",
+  "node_name": "consul-client",
+  "server": false,
+  "watches": [
+    {
+        "type": "event",
+        "handler": "./register-event-handler.sh"
+    }
+  ],
+  "start_join": ["192.168.99.100", "192.168.99.101"]
+}
