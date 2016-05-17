@@ -4,6 +4,8 @@ declare -r DEAFULT_CONSUL_AGENT_HOST="192.168.99.102"
 declare -r DEFAULT_CONSUL_AGENT_PORT="8500"
 declare -r PROCESS_UNDER_WATCH_FILES_DIR="/tmp/processes_under_watch"
 
+export DEAFULT_CONSUL_AGENT_HOST
+export DEFAULT_CONSUL_AGENT_PORT
 declare -a service_names;
 
 process_services() {	
@@ -51,7 +53,7 @@ start_watching() {
 	if [ !"consul"="$service_to_watch" ]; then
 		printf "%s\n" "Starting to watch $service_to_watch" 
 		touch $PROCESS_UNDER_WATCH_FILES_DIR/$service_to_watch &&
-		consul watch -http-addr="$DEAFULT_CONSUL_AGENT_HOST":"$DEFAULT_CONSUL_AGENT_PORT" -type keyprefix -prefix "$service_to_watch" ./key-value-update.sh &
+		consul watch -http-addr="$DEAFULT_CONSUL_AGENT_HOST":"$DEFAULT_CONSUL_AGENT_PORT" -type keyprefix -prefix "$service_to_watch" ./key-value-update.sh "$service_to_watch" &
 		echo $! > $PROCESS_UNDER_WATCH_FILES_DIR/$service_to_watch
 	fi	
 }

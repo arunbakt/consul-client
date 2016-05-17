@@ -1,2 +1,0 @@
-1. Handle a micro-service registration and deregistration
-2. Keep track of consul watch scripts on service registration and deregistration3. when consul watch on a specific micro-service go unhealthy or critical, skip key-value config publishing
